@@ -1,4 +1,23 @@
 package com.nyayozangu.labs.fuqua.adapters;
 
-public class HistoryRecyclerAdapter {
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
+
+public class HistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
 }
