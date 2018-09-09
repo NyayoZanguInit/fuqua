@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "521910264586",
+    "firebase_url": "https://fuqua-75437.firebaseio.com",
+    "project_id": "fuqua-75437",
+    "storage_bucket": "fuqua-75437.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521910264586:android:acbf71d8dacb5222",
+        "android_client_info": {
+          "package_name": "com.nyayozangu.labs.fuqua"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521910264586-horksbt1tu4fvt8unffppc5qacj5tlh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2l7bwpmECsZfBaoF4G3ZDreAWnYxB1dw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
