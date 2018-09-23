@@ -7,14 +7,20 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.nyayozangu.labs.fuqua.R;
+import com.nyayozangu.labs.fuqua.common.Common;
 import com.nyayozangu.labs.fuqua.model.Entry;
 
 import java.util.ArrayList;
@@ -23,23 +29,70 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
-public class DataEntryActivity extends AppCompatActivity {
+public class DataEntryActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     // TODO: 9/8/18 check for incomplete entry
     // TODO: 9/8/18 check if there are entries today
 
+    private static final int RAW_SUPPLY = 1;
+//    private static final int RAW_SUPPLY = 2;
+//    private static final int RAW_SUPPLY = 3;
+//    private static final int RAW_SUPPLY = 4;
+//    private static final int RAW_SUPPLY = 5;
+//    private static final int RAW_SUPPLY = 6;
+//    private static final int RAW_SUPPLY = 7;
+//    private static final int RAW_SUPPLY = 8;
+//    private static final int RAW_SUPPLY = 9;
+//
+
+    /*
+    *
+    * "Raw Supply[Lake]",
+                "Boiler Supply",
+                "Condensate Return",
+                "Backwash Sand Filter",
+                "Backwash UF",
+                "Boiler MakeUp",
+                "Agro-Fired Boiler",
+                "Scrubber",
+                "Condenser"*/
+
+    private String propertiesTitles[] = {
+            "Raw Supply[Lake]",
+            "Boiler Supply",
+            "Condensate Return",
+            "Backwash Sand Filter",
+            "Backwash UF",
+            "Boiler MakeUp",
+            "Agro-Fired Boiler",
+            "Scrubber",
+            "Condenser"
+    };
+
+
+    private Common common = new Common();
+
     private static final String TAG = "DataEntryActivity";
+
+    private Button submitButton;
+    private View dataInputView;
+
+    private int boilerSupply, condensateReturn, backwashSandFilter; // TODO: 9/23/18 add the rest
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
 
         //initiate items
-        String propertiesTitles[] = {
-                "Raw Supply[Lake]", "Boiler Supply","Condensate Return", "Backwash Sand Filter", "Backwash UF", "Boiler MakeUp", "Agro-Fired Boiler", "Scrubber", "Condenser"
-        };
+        submitButton = findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(this);
+        handleSimpleAdapter();
+        checkForIncompleteEntry();
+    }
+
+    private void handleSimpleAdapter() {
+
 
         // maybe not needed
         List<HashMap<String, String>> propertyList = new ArrayList<>();
@@ -56,16 +109,15 @@ public class DataEntryActivity extends AppCompatActivity {
         SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(), propertyList, R.layout.data_entry_item, from, to);
         final GridView propertiesGridView = findViewById(R.id.propertiesGridView);
         propertiesGridView.setAdapter(simpleAdapter);
-
-        checkForIncompleteEntry(database);
+        propertiesGridView.setOnItemClickListener(this);
     }
 
-    private void checkForIncompleteEntry(FirebaseFirestore database) {
+    private void checkForIncompleteEntry() {
         // TODO: 9/8/18 check for entries today
         // TODO: 9/8/18 check for incomplete entry
 
         String todayString = getToday();
-        database.collection("Entries").document(todayString).get()
+        common.database.collection("Entries").document(todayString).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -120,5 +172,75 @@ public class DataEntryActivity extends AppCompatActivity {
         String month = String.valueOf(date.get(Calendar.MONTH + 1));
         String day = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
         return year + month + day;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.submitButton:
+                handleSubmit();
+                break;
+            default:
+                Log.d(TAG, "onClick: " + v.getId() + " has been clicked");
+        }
+    }
+
+    private void handleSubmit() {
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+            case RAW_SUPPLY:
+                Toast.makeText(this, "position " + position +"has been clicked", Toast.LENGTH_SHORT).show();
+                // TODO: 9/23/18 replace toast with show input dialog
+                showDataInputDialog(propertiesTitles[RAW_SUPPLY], RAW_SUPPLY);
+                break;
+            default:
+                Log.d(TAG, "onItemClick: position " + position + " has been clicked");
+        }
+    }
+
+    private void showDataInputDialog(String propertyTitle, final int position) {
+        // TODO: 9/23/18 get user input
+        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        dataInputView = inflater.inflate(R.layout.data_input_layout, null);
+        AlertDialog.Builder dataInputBuilder = new AlertDialog.Builder(this);
+        dataInputBuilder.setTitle(propertyTitle) // TODO: 9/23/18 set icon
+        .setView(dataInputView)
+                .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //get user input
+                        EditText userInputEditText = dataInputView.findViewById(R.id.dataInputEditText);
+                        String userInput = userInputEditText.getText().toString().trim();
+                        if (!userInput.isEmpty()){
+                            updateDataValues(userInput, position);
+
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+        .setCancelable(false)
+        .show();
+
+
+    }
+
+    private void updateDataValues(String userInput, int position) {
+        switch (position){
+            case RAW_SUPPLY:
+                boilerSupply = Integer.valueOf(userInput);
+
+                // TODO: 9/23/18 add all data entries
+
+
+        }
     }
 }
