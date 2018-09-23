@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.nyayozangu.labs.fuqua.R;
 
 public class LoginActivity extends AppCompatActivity {
-    Button Login;
+    Button Login_Btn;
     EditText Employee_id, password;
     TextView forgot_password, register;
 
