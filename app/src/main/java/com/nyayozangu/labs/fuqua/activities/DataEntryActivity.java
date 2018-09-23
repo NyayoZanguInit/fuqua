@@ -38,7 +38,7 @@ public class DataEntryActivity extends AppCompatActivity {
 
         //initiate items
         String propertiesTitles[] = {
-                "Lake", "uf", "sand", "supply", "makeup", "scrubber", "condensate", "water temp"
+                "Raw Supply[Lake]", "Boiler Supply","Condensate Return", "Backwash Sand Filter", "Backwash UF", "Boiler MakeUp", "Agro-Fired Boiler", "Scrubber", "Condenser"
         };
 
         // maybe not needed
