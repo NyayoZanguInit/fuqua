@@ -77,7 +77,7 @@ public class DataEntryActivity extends AppCompatActivity implements View.OnClick
     private Button submitButton;
     private View dataInputView;
 
-    private int boilerSupply, condensateReturn, backwashSandFilter; // TODO: 9/23/18 add the rest
+    private int rawSupply, boilerSupply, condensateReturn, backwashSandFilter, backwashUf, boilerMakeup, agroFiredboiler, scrubber, condenser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
