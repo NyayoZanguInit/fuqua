@@ -224,7 +224,35 @@ public class DataEntryActivity extends AppCompatActivity implements View.OnClick
     private void updateDataValues(String userInput, int position) {
         switch (position){
             case RAW_SUPPLY:
+                rawSupply=Integer.valueOf(userInput);
+                break;
+            case BOILER_SUPPLY:
                 boilerSupply = Integer.valueOf(userInput);
+                break;
+            case CONDENSATE_RETURN:
+                condensateReturn=Integer.valueOf(userInput);
+                break;
+            case SAND_FILTER:
+                backwashSandFilter=Integer.valueOf(userInput);
+                break;
+            case UF:
+                backwashUf=Integer.valueOf(userInput);
+                break;
+            case BOILER_MAKEUP:
+                boilerMakeup=Integer.valueOf(userInput);
+                break;
+            case AGROFIRED_BOILER:
+                agroFiredboiler=Integer.valueOf(userInput);
+                break;
+            case SCRUBBER:
+                scrubber=Integer.valueOf(userInput);
+                break;
+            case CONDENSER:
+                condenser=Integer.valueOf(userInput);
+                break;
+            default:
+                Log.d(TAG, "no value has been clicked");
+
 
                 // TODO: 9/23/18 add all data entries
 
