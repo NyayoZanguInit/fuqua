@@ -23,11 +23,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // instantiate common functions
     private Common common = new Common();
     private Button loginBtn;
+    private EditText employeeIdEditText, passwordEditText;
+    private TextView forgot_passwordTextView, registerTextView;
 
     // TODO: 9/23/18  make variables private
     // TODO: 9/23/18 change variable names to match convention
-    EditText employeeIdEditText, passwordEditText;
-    TextView forgot_passwordTextView, registerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
