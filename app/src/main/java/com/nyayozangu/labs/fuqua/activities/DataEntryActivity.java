@@ -35,27 +35,15 @@ public class DataEntryActivity extends AppCompatActivity implements View.OnClick
     // TODO: 9/8/18 check if there are entries today
 
     private static final int RAW_SUPPLY = 1;
-//    private static final int RAW_SUPPLY = 2;
-//    private static final int RAW_SUPPLY = 3;
-//    private static final int RAW_SUPPLY = 4;
-//    private static final int RAW_SUPPLY = 5;
-//    private static final int RAW_SUPPLY = 6;
-//    private static final int RAW_SUPPLY = 7;
-//    private static final int RAW_SUPPLY = 8;
-//    private static final int RAW_SUPPLY = 9;
-//
+    private static final int  BOILER_SUPPLY= 2;
+    private static final int CONDENSATE_RETURN= 3;
+    private static final int SAND_FILTER= 4;   //Backwash
+    private static final int UF = 5;          //Backwash
+    private static final int BOILER_MAKEUP= 6;
+    private static final int AGROFIRED_BOILER= 7;
+    private static final int SCRUBBER= 8;
+    private static final int CONDENSER = 9;
 
-    /*
-    *
-    * "Raw Supply[Lake]",
-                "Boiler Supply",
-                "Condensate Return",
-                "Backwash Sand Filter",
-                "Backwash UF",
-                "Boiler MakeUp",
-                "Agro-Fired Boiler",
-                "Scrubber",
-                "Condenser"*/
 
     private String propertiesTitles[] = {
             "Raw Supply[Lake]",

@@ -26,8 +26,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText employeeIdEditText, passwordEditText;
     private TextView forgot_passwordTextView, registerTextView;
 
-    // TODO: 9/23/18  make variables private
-    // TODO: 9/23/18 change variable names to match convention
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
