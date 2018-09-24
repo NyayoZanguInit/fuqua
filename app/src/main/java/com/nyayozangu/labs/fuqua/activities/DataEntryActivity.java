@@ -253,10 +253,6 @@ public class DataEntryActivity extends AppCompatActivity implements View.OnClick
             default:
                 Log.d(TAG, "no value has been clicked");
 
-
-                // TODO: 9/23/18 add all data entries
-
-
         }
     }
 }
