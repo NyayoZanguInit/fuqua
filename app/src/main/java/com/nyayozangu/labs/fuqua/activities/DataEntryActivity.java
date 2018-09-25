@@ -196,8 +196,8 @@ public class DataEntryActivity extends AppCompatActivity implements View.OnClick
         dataInputView = inflater.inflate(R.layout.data_input_layout, null);
 
         AlertDialog.Builder dataInputBuilder = new AlertDialog.Builder(this);
-        dataInputBuilder.setTitle(propertyTitle) // TODO: 9/23/18 set icon
-         dataInputBuilder.setIcon(R.drawable.ic_alert_black_24dp);
+        dataInputBuilder.setTitle(propertyTitle);
+         dataInputBuilder.setIcon(R.drawable.ic_alert_black_24dp)
         .setView(dataInputView)
                 .setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
