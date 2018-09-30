@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:padding="24dp"
         android:text="entry"
-        android:drawableTop="@drawable/ic_prop"
+        android:drawableTop="@drawable/ic_write_entry_24dp"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
