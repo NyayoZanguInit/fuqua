@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nyayozangu.labs.fuqua.R;
 import com.nyayozangu.labs.fuqua.common.Common;
@@ -36,8 +37,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordEditText = findViewById(R.id.password);
         loginBtn = findViewById(R.id.login_button);
 
-        //sample login creds to populate
+        //sample login cred to populate
         loginCredentials.put("001", "xyz");
+        loginCredentials.put("002","abc");
+        loginCredentials.put("003","qwert");
 
         loginBtn.setOnClickListener(this);
 
@@ -75,11 +78,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     finish();
                 }else{
                     // password is wrong
+                    Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
                 }
 
             }else{
                 //id does not exist
                 //prompt warning
+               // Toast.makeText(getApplicationContext(),"Employee ID doesn't exist", Toast.LENGTH_SHORT).show();
             }
         }
 
